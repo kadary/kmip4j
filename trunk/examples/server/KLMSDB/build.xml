@@ -1,0 +1,64 @@
+<project name="KLMSDB" basedir="."  >
+
+	<property name="build.home" value="${basedir}/bin" />
+	<property name="src.home" value="${basedir}/src" />
+	<property name="lib.home" value="${basedir}/libs" />
+	<property name="db.home" value="${basedir}/h2db" />
+	<property name="db.script" value="${db.home}/database.sql" />
+	<property name="build.db.home" value="${build.home}/db" />
+	<property name="build.ddl.home" value="${build.home}/ddl" />
+
+	<path id="classpath">
+		<fileset dir="${lib.home}">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${lib.home}/hibernate">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<path id="h2.classpath">
+		<fileset dir="./libs/jdbc">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<patternset id="db-pattern">
+		<include name="*.h2.db" />
+	</patternset>
+
+	<target name="db-init" description="DB initialisieren">
+		<delete failonerror="false" verbose="true">
+			<fileset dir="${build.db.home}">
+			</fileset>
+		</delete>
+
+		<copy todir="${build.db.home}">
+			<fileset dir="${db.home}">
+				<patternset refid="db-pattern" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="db-start" description="DB starten" depends="db-init">
+		<java classname="org.h2.tools.Server" fork="yes">
+			<classpath refid="h2.classpath" />
+			<arg line="-baseDir ${build.db.home} -tcp" />
+		</java>
+	</target>
+
+	<target name="db-stop" description="DB stoppen">
+		<java classname="org.h2.tools.Server">
+			<classpath refid="h2.classpath" />
+			<arg line="-tcpShutdown tcp://localhost:9092 -tcpShutdownForce" />
+		</java>
+	</target>
+
+	<target name="db-web" description="H2 Web Console starten">
+		<java classname="org.h2.tools.Server" fork="yes">
+			<classpath refid="h2.classpath" />
+			<arg line="-baseDir ${build.db.home} -web -browser" />
+		</java>
+	</target>
+
+</project>
