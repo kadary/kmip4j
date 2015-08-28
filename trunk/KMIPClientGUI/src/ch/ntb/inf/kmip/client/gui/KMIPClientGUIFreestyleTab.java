@@ -11,6 +11,7 @@
  *
  * @author     Stefanie Meile <stefaniemeile@gmail.com>
  * @author     Michael Guster <michael.guster@gmail.com>
+ * @author     Keith Bucher <keith.bucher@gmail.com>
  * @org.       NTB - University of Applied Sciences Buchs, (CH)
  * @copyright  Copyright © 2013, Stefanie Meile, Michael Guster
  * @license    Simplified BSD License (see LICENSE.TXT)
