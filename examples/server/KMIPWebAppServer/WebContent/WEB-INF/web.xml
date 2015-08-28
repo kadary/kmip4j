@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>KMIPServlet</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <context-param>
+    <param-name>KLMS</param-name>
+    <param-value>ch.ntb.inf.klms.KLMS</param-value>
+  </context-param>
+  <context-param>
+    <param-name>Adapter</param-name>
+    <param-value>ch.ntb.inf.klms.KLMSAdapter</param-value>
+  </context-param>
+  <context-param>
+    <param-name>KLMSAdapterInterface</param-name>
+    <param-value>ch.ntb.inf.kmip.skeleton.KLMSAdapterInterface</param-value>
+  </context-param>
+  <context-param>
+    <param-name>KLMSInterface</param-name>
+    <param-value>ch.ntb.inf.klms.KLMSInterface</param-value>
+  </context-param>
+  <context-param>
+    <param-name>Skeleton</param-name>
+    <param-value>ch.ntb.inf.kmip.skeleton.KMIPSkeleton</param-value>
+  </context-param>
+  <context-param>
+    <param-name>Encoder</param-name>
+    <param-value>ch.ntb.inf.kmip.process.encoder.KMIPEncoder</param-value>
+  </context-param>
+  <context-param>
+    <param-name>Decoder</param-name>
+    <param-value>ch.ntb.inf.kmip.process.decoder.KMIPDecoder</param-value>
+  </context-param>
+  <context-param>
+	<param-name>log4jLocation</param-name>
+	<param-value>WEB-INF/log4j-1.2.17.xml</param-value>
+  </context-param>
+
+  <servlet>
+    <description>
+		This Servlet provides the communication between KMIP-Clients and the KLMS.
+    </description>
+    <display-name>KMIPServlet</display-name>
+    <servlet-name>KMIPServlet</servlet-name>
+    <servlet-class>ch.ntb.inf.kmip.skeleton.transport.servlets.KMIPServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>KMIPServlet</servlet-name>
+    <url-pattern>/KMIPWebAppServer</url-pattern>
+  </servlet-mapping>
+</web-app>
